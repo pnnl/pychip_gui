@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CSS -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../../static/css/styles.css">
+    <script src="../../static/jquery/global_utils.js" type="text/javascript"></script>
+    <script src="../../static/javascript/chips.js"></script>
+    <script>
+      //using the dim passed on via app.py
+      var dim = {{ dim|  tojson}}
+    </script>
+
+    <!-- title -->
+    <title>pyCHIP Home</title>
+  </head>
+
+
+    <body>
+
+    <div class="loading_mask">
+      <div class="loading_wheel"></div>
+    </div>
+
+        <div class="wrapper">
+            <!-- replace the current pnnl logo with pychip logo -->
+            <div class="sidebar">
+                <h2>pyCHIP</h2>
+                <ul>
+                    {% for item in nav.side %}
+                    <li><a href="{{item.url}}">{{item.label}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <main>
+                <section id="chipped_view">
+                    <section id="chip_section">
+                        <div id="chips_holder"></div>
+                    </section>
+                    <section id="selection_form">
+                        <div id="form_options">
+                            <center><h3>Support Set Selection</h3></center>
+                            <br>
+                            <div class="centered">
+                                <button id="add_set">Add A New Set</button>
+                                <label for="edit_select">Editing Set:</label>
+                                <select name="edit_select" id="edit_select">
+                                    <option value="1">feature_type_1</option>
+                                </select>
+                                <button id="remove_set">Remove Last Set</button><br>
+                            </div>
+                            <p>
+                                You will need one set for each type of feature you want the model to identify in your
+                                image. To add or remove a set use the buttons above. To add or remove images to/from a
+                                set, click on the chips to the left. Use the drop down menu above to change which set
+                                you are adding chips to. The text input fields below can be used to add custom names to
+                                your sets.<br><br>
+
+                                The model works best when 2-10 chips are assigned to each set. When you're
+                                done, click the "Save Support Set & Process" button below. Results will appear when the model
+                                has finished processing the image - this may take a few minutes.
+                            </p>
+                        </div>
+                        <div id="selected_sets_window">
+                            <div id="set1">
+                                <label for="name1">Name of set 1:</label>
+                                <input type="text" id="name1" name="name1" value="feature_type_1"><br><br>
+                                <div id="chips1" class="selected_chips_window"></div>
+                            </div>
+                        </div>
+                        <form action="http://localhost:5000/results" method="POST" id="form1">
+                            <input type="text" id="support_sets" name="support_sets" class="hidden"><br><br>
+
+                            <input type="checkbox" id="preprocess_choice" name="preprocess_choice" value="process" checked>
+                            <label for="preprocess_choice"> Preprocess image to improve accuracy</label><br><br>
+                            <input type="checkbox" id="preexisting_supports" name="preexisting_supports" value="support">
+                            <label for="preexisting_supports"> Use my support set from previous run</label><br><br>
+                        </form>
+                        <button id="save_sets" form="form1" onclick="loading()">Save Support Set & Process</button>
+
+<!--
+                        <li><a href="{{ url_for('send_supports') }}" onclick="loading();">Entities</a></li> -->
+                    </section>
+                </section>
+                <p class="result"></p>
+            </main>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,37 @@
+</vegalite>
+<html>
+  <head>
+    <title>Embedding Vega-Lite</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.19.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.0.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.15.1"></script>
+  </head>
+  <body>
+    <div id="vis"></div>
+    <script>
+      //using the dim passed on via app.py
+      var csv_path = "static/data/fewshot_result.csv"
+    </script>
+    <script type="text/javascript">
+    console.log(csv_path)
+      var yourVlSpec = {
+        $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+         description: "Count of each labled set of STEM image",
+         title: "Count of each labled STEM image set",
+         background: "white",
+         width: 920,
+         height: 720,
+        data: {"url": csv_path},
+              mark: {type: 'bar', cornerRadiusEnd: 4},
+              "mark": "bar",
+              "encoding": {
+              "x": { "field": "prediction", "type": "ordinal"},
+              "y": {"aggregate": "count"},
+              "tooltip": {"field": "prediction","type": "ordinal"}, 
+              "color":{"value": "#ff9900"}
+              }
+        }
+            vegaEmbed('#vis', yourVlSpec);
+    </script>
+  </body>
+</html>

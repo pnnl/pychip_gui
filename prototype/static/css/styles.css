@@ -1,0 +1,298 @@
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100&display=swap');
+
+.loading_mask {
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+   position: fixed;
+   background-color: #fff;
+   z-index: 9999;
+   z-index: 900;
+   text-align: center;
+   display:none
+}
+
+.loading_wheel {
+  position: relative;
+  top: 49%;
+  left: 49%;
+  width:250px;
+  height:250px;
+  background: url(/static/loading.gif) no-repeat;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+/* #646464
+#d47b24 */
+body {
+    background-color: #FFFFFF;
+}
+
+.wrapper {
+    display: flex;
+    position: relative;
+}
+
+.wrapper .sidebar {
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    background-color: #f58528;
+    padding: 30px 0;
+    font-family: 'Antonio', sans-serif;
+}
+
+.wrapper .sidebar h2{
+    color: #fff;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.wrapper .sidebar ul li{
+    padding: 15px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-top: 1px solid rgba(225,225,225,0.1);
+    transition: all 0.3s ease 0s;
+}
+
+.wrapper .sidebar ul li a{
+    color: #000000;
+    display: block;
+    transition: all 0.3s ease 0s;
+}
+
+.wrapper .sidebar ul li:hover{
+    background-color: #0073a6;
+}
+
+.wrapper .sidebar ul li:hover a{
+    color: #fff;
+}
+
+main {
+    width: 100%;
+    margin-left: 200px;
+}
+
+#slider_bar {
+    justify-content: center;
+    display:flex;
+
+}
+
+#slider_bar label{
+    padding: 10px 0;
+    font-size: 18px;
+}
+
+#slider_bar input{
+    margin: 0 10px;
+    width: 200px;
+
+}
+
+h1 {
+    background-color: #fff;
+    color: #606a71;
+    padding: 25px;
+    border-bottom: 1px solid #090950;
+}
+
+h2 {
+    color: #646464;
+}
+
+.content {
+    display: flex;
+}
+
+.section {
+    margin: 10px;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.section p {
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.use_case {
+    display: flex;
+    flex-direction: column;
+}
+
+.use_case figure {
+    align-self: center;
+}
+
+.use_case figure img {
+    max-height: 250px;
+}
+
+figcaption {
+    text-align: center;
+}
+
+button, #send_data {
+    background-color: #f58528;
+    padding: 12px 28px;
+    font-size: 14px;
+    border-radius: 8px;
+    color: #ffffff;
+    transition: all 0.3s ease 0s;
+}
+
+button:hover {
+    background-color: #0073a6;
+}
+.selectable:hover {
+    opacity: 0.5;
+}
+.selectable {
+    border: 2px solid black;
+}
+.selected1 {
+    background: red;
+}
+.selected2 {
+    background: green;
+}
+.selected3 {
+    background: blue;
+}
+
+.selected4 {
+    background: purple;
+}
+
+.selected5 {
+    background: orange;
+}
+
+.selected img {
+    opacity: 0.4;
+}
+.img_row {
+    width: 80%;
+    margin: auto;
+}
+#chips_holder {
+    display: flex;
+    flex-direction: row;
+    width: 600px;
+    overflow-x: auto;
+}
+.img_row fig {
+    display: block;
+    border: 0.5px solid grey;
+}
+.img_row fig img {
+    display: block;
+    width: 100%;
+}
+#chips_holder, #selection_form {
+    height: 100%;
+    overflow-y: auto;
+}
+
+#statistics {
+    position:relative;
+    top:-10px;
+}
+
+#results_map {
+    position:relative;
+    top:-30px;
+}
+
+#results_map img{
+    max-height: 500px;
+    max-width: 500px;
+}
+
+#selection_form {
+    border: 5px solid black;
+    width: 550px;
+}
+
+#chipped_view, #results_view {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 95%;
+    align-items: center;
+    padding-top: 50px;
+}
+.hidden {
+    visibility: hidden;
+}
+.selected_chips_window fig {
+    margin: 10px 5px;
+    height: 50px;
+    width: 50px;
+}
+
+.selected_chips_window fig img {
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+
+}
+.selected_chips_window {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+#form_options {
+    padding: 10px 0px;
+    border-bottom: 5px solid black;
+}
+
+#selected_sets_window {
+    padding-top: 10px;
+}
+
+#chip_section, #results_map {
+    padding: 0px 30px;
+}
+
+.centered {
+    text-align: center;
+}
+
+#results_view {
+    overflow-x: auto;
+}
+
+#form_options p {
+    padding: 10px;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.left {
+  width:50%;
+  display:inline;
+}
+
+.right {
+  width:50%;
+  display:inline;
+}
+
+.left, .right {
+    border: 1px solid #ddd;
+    padding: 10px;
+}

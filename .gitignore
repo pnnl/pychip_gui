@@ -1,0 +1,73 @@
+# Editors
+.vscode/
+.idea/
+
+# test input files
+test_input_files
+
+# Mac/OSX
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Source for the following rules: https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Sphinx documentation
+docs/_build/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+prototype/pychip/__pycache__/*
+prototype/flask_session/*
+
+
+prototype/static/username/query/all_chips/*
+prototype/static/username/result/*
+prototype/static/username/images/*
+prototype/static/username/support/*
+
+
+!prototype/static/images/.gitkeep
+!prototype/static/username/query/all_chips/.gitkeep
+!prototype/static/username/result/fewshot_map.png
+!prototype/static/username/result/fewshot_result.csv
+!prototype/static/username/result/.gitkeep
+!prototype/static/username/images/.gitkeep
+!prototype/static/username/support/.gitkeep
+env/*
+wizem/*
+
+env
+*.pyc

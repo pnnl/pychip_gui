@@ -1,0 +1,44 @@
+# This file is a template, and might need editing before it works on your project.
+# Official language image. Look for the different tagged releases at:
+# https://hub.docker.com/r/library/python/tags/
+image: python:3.9
+
+
+# Change pip's cache directory to be inside the project directory since we can
+# only cache local items.
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+# Pip's cache doesn't store the python packages
+# https://pip.pypa.io/en/stable/reference/pip_install/#caching
+#
+# If you want to also cache the installed packages, you have to install
+# them in a virtualenv and cache it as well.
+cache:
+  paths:
+    - .cache/pip
+    - venv/
+
+before_script:
+  - export http_proxy=http://proxy01.pnl.gov:3128
+  - export https_proxy=http://proxy01.pnl.gov:3128
+  - export no_proxy=localhost,127.0.0.1,*.pnl.gov,*.pnnl.gov,10.17.128.1,10.17,10.16,172.26
+
+  - python -V  # Print out python version for debugging
+  - pip install virtualenv
+  - virtualenv venv
+  - source venv/bin/activate
+  - pip install -r requirements.txt --find-links https://download.pytorch.org/whl/torch_stable.html
+  - python setup.py install
+
+stages: 
+  - Static Analysis 
+  - Test Files 
+
+
+flake8: 
+  stage: Static Analysis 
+  script: 
+    - flake8 --max-line-length=120 pychip/*.py
+  tags:
+    - joecool

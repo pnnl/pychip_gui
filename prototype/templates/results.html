@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../static/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.19.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.0.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.15.1"></script>
+
+    <!-- title -->
+    <title>results</title>
+  </head>
+
+
+    <body>
+        <div class="wrapper">
+            <!-- replace the current pnnl logo with pychip logo -->
+            <div class="sidebar">
+                <h2>pyCHIP</h2>
+                <ul>
+                    {% for item in nav.side %}
+                    <li><a href="{{item.url}}">{{item.label}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <main>
+              <br>
+              <center>
+                <h2> Preloaded images, not created from inputs </h2>
+              </center>
+                <div id="results_view">
+
+                    <section id="results_map">
+                      <form action="{{ url_for('download', foldername = "result", filename="fewshot_map.png") }}">
+                          <input type="submit" value="Download Image" />
+                          </form>
+                          <br>
+                        <img src="../static/username/result/fewshot_map.png" alt="segmentation results map">
+                        </section>
+                    <section id="statistics">
+                      <form action="{{ url_for('download', foldername = "result", filename="fewshot_result.csv") }}">
+                          <input type="submit" value="Download CSV" />
+                          </form>
+                          <br>
+                        <p> Click on three dots on the right of the graph to download as png</p>
+                        <div id="vis"></div>
+                        <script>
+                          //using the dim passed on via app.py
+                          var csv_path = "static/username/result/fewshot_result.csv"
+                        </script>
+
+                        <script type="text/javascript">
+                          var yourVlSpec = {
+                            $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+                             description: "Count of each labeled set of STEM image",
+                             title: "Count of each labeled STEM image set",
+                             background: "white",
+                             width: 500,
+                             height: 500,
+                            data: {"url": csv_path},
+                                  mark: {type: 'bar', cornerRadiusEnd: 4},
+                                  "mark": "bar",
+                                  "encoding": {
+                                  "x": { "field": "prediction", "type": "nominal", "sort": "ascending"},
+                                  "y": {"aggregate": "count"},
+                                  "tooltip": {"field": "prediction","type": "nominal"},
+                                  "color":{
+                                        "field": "prediction", "type": "nominal",
+                                        "scale": {"range": ["blue", "red", "green", "yellow", "purple", "pink"]}
+                                      }
+                                  }
+                            }
+                            vegaEmbed('#vis', yourVlSpec);
+                        </script>
+                    </section>
+                </div>
+            </main>
+        </div>
+
+    </body>
+</html>

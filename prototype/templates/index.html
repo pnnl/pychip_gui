@@ -1,0 +1,70 @@
+<!-- python -m http.server 8888 &. -->
+
+<html>
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="../../static/css/styles.css">
+        <!-- title -->
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <title>pyCHIP Home</title>
+    </head>
+
+    <body>
+        <div class = "wrapper">
+        <div class="sidebar">
+            <h2>pyCHIP</h2>
+            <ul>
+              <ul>
+                    {% for item in nav.side %}
+                    <li><a href="{{item.url}}">{{item.label}}</a></li>
+                    {% endfor %}
+                </ul>
+            </ul>
+        </div>
+        <main>
+            <!--https://pythonbasics.org/flask-upload-file/-->
+            <form action = "http://localhost:5000/" method = "POST"
+              enctype = "multipart/form-data">
+              <!-- <input type = "file" name = "file" />
+              <input type = "submit"/> -->
+            </form>
+            <div id="data"></div>
+
+            <form method= post action = "http://localhost:5000/support_select" id = "slider_bar">
+                <label for="mySlider">Please use this slider to adjust chip size</label>
+                <input type="range" name="mySlider" id=mySlider min="1" max="500" value="250" onchange="updateTextInput(this.value);">
+                <input type ="submit" value="Use This Grid Size" id="send_data">
+                <input type="text" id="textInput" value="">
+            </form>
+            <br>
+            <p class="centered">Adjust the grid size so that each square contains only one type of feature.<br>
+                A smaller grid size will often give better results, but may take longer to process</p>
+            <div id="map"></div>
+            <script>
+                //using the dim passed on via app.py
+                var dim = {{ dim|  tojson}}
+            </script>
+
+
+            <!-- the d3 script -->
+            <script type="text/javascript" src="{{ url_for('static', filename='javascript/grid.js') }}"></script>
+            <script>
+
+                //this sends data via "post" back to app.py
+              // $(document).ready(function () {
+              //     $("#send_data").on("click", function() {
+
+              //         window.location.href = '/save_file/'+height + "/" + width;
+              //     });
+              // });
+            </script>
+        </main>
+      </div>
+    </body>
+</html>
