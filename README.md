@@ -5,7 +5,7 @@ pyCHIP is a tool for image segmentation and feature classification in transmissi
 
 pyCHIP is most useful for trained microscopists who would like to identify features in their TEM images, where such an analysis would ordinarily be tedious or time-consuming by hand.
 
-This code is the result of a project for the University of Washington Data Intensive Research Enabling Clean Technologies (UW-DIRECT) capstone program. For more information on the program, visit: https://depts.washington.edu/uwdirect/ 
+This code is the result of a project for the University of Washington Data Intensive Research Enabling Clean Technologies (UW-DIRECT) capstone program. For more information on the program, visit: https://depts.washington.edu/uwdirect/
 
 How to Use pyCHIP
 -------------
@@ -42,7 +42,7 @@ Installation
 Download Git Repository
 -------------
     $cd <replace with location of project folder>
-    $git clone https://gitlab.pnnl.gov/joecool/pychip_gui.git
+    $git clone https://github.com/pnnl/pychip_gui.git
     $cd pychip_gui
 
 Switch to working_main branch
