@@ -45,16 +45,20 @@ Download Git Repository
     $git clone https://github.com/pnnl/pychip_gui.git
     $cd pychip_gui
 
-Switch to working_main branch
--------------
-    $git init
-    $git pull
-
 
 Create environment
 -------------
-    $python3 -m venv wizem
-    $source wizem/bin/activate
+
+    if have Mac:
+
+    $python3 -m venv env
+    $source env/bin/activate
+
+
+    if have Windows:
+
+    $ virtualenv env
+    $ \path\to\env\Scripts\activate
 
 Install required packages
 -------------
@@ -71,9 +75,10 @@ Run App
 Relaunch
 ------
 
-    $source wizem/bin/activate
-    $cd to project folder
+    $cd to pychip_gui
     $git pull
+    $source env/bin/activate #if have mac
+    $ \path\to\env\Scripts\activate #if have windows
     $cd to prototype folder
     $python app.py
 
