@@ -41,46 +41,50 @@ Installation
 
 Download Git Repository
 -------------
-    $cd <replace with location of project folder>
-    $git clone https://github.com/pnnl/pychip_gui.git
-    $cd pychip_gui
+    cd <replace with location of project folder>
+    git clone https://github.com/pnnl/pychip_gui.git
+    cd pychip_gui
 
 
 Create environment
 -------------
 
-    if have Mac:
+    #if have Mac:
 
-    $python3 -m venv env
-    $source env/bin/activate
+    python3 -m venv env
+    source env/bin/activate
 
 
-    if have Windows:
+    #if have Windows:
 
-    $ virtualenv env
-    $ \path\to\env\Scripts\activate
+    virtualenv env
+    \path\to\env\Scripts\activate
 
 Install required packages
 -------------
-    $cd prototype
-    $pip install -r requirements.txt
+    cd prototype
+    pip install -r requirements.txt
 
 
 Run App
 -------------
-    $python app.py
+    python app.py
 
     - go to http://127.0.0.1:5000/
 
 Relaunch
 ------
 
-    $cd to pychip_gui
-    $git pull
-    $source env/bin/activate #if have mac
-    $ \path\to\env\Scripts\activate #if have windows
-    $cd to prototype folder
-    $python app.py
+    cd to pychip_gui
+    git pull
+
+    #reactivate environment
+    source env/bin/activate #if have mac
+    \path\to\env\Scripts\activate #if have windows
+
+
+    cd to prototype folder
+    python app.py
 
     - For ease of use a demo video has been included in the repository under /docs/videos/UIDemo
     - Additional Instructions have been included in the Prototype app.
