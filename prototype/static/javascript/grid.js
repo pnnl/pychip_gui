@@ -59,8 +59,8 @@ var svg = d3.select("#map").append("svg")
     .attr("transform","translate("+margin.left+","+margin.top+")")
 
 //add image to the background (could make this a user input)
-var myimage = svg.append('image')
-    .attr('xlink:href', dim.image)
+var myimage = svg.append('image')    
+    .attr('xlink:href', "../static/username/images/" + dim.image)
     .attr('width', width)
     .attr('height', height)
 

@@ -34,6 +34,12 @@ nav.Bar('side', [
 # file paths
 app.config['UPLOAD_PATH'] = 'protected'
 
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+UPLOAD_FOLD = os.path.join('static', 'username')
+UPLOAD_FOLDER = os.path.join(APP_ROOT, UPLOAD_FOLD)
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 
 @app.route('/protected/<filename>')
 def upload(filename):
@@ -63,32 +69,53 @@ def create_grid():
     if request.method == 'POST':
         f = request.files['file']
 
+        print(f.filename)
+
+        cur_name = os.path.join(app.config['UPLOAD_FOLDER'], 'images', secure_filename(f.filename))
+
+
         if f.filename[-4:] == "tiff":
-            f.save("static/username/images/" + f.filename)
-            image = Image.open("static/username/images/" + f.filename)
-            image.mode = 'I'
-            new_image = image.point(lambda i:i*(1./256)).convert('L')
+            f.save(cur_name)
+            image = Image.open(cur_name)
+            if image.mode not in ("L", "RGB"):  # rescale 16 bit tiffs to 8 bits
+                image.mode = "I"
+                image = image.point(lambda i: i * (1.0 / 256))
+            new_image = image.convert("RGB")
             current_name = f.filename[:-4] + "jpg"
-            new_image.save("static/username/images/" + current_name)
+            new_image.save(os.path.join(app.config['UPLOAD_FOLDER'], 'images', secure_filename(current_name)))
+        elif f.filename[-3:] == "tif":
+            f.save(cur_name)
+            image = Image.open(cur_name)
+            print(image.mode)
+            if image.mode not in ("L", "RGB"):  # rescale 16 bit tiffs to 8 bits
+                image.mode = "I"
+                image = image.point(lambda i: i * (1.0 / 256))
+            new_image = image.convert("RGB")
+            current_name = f.filename[:-3] + "jpg"
+            new_image.save(os.path.join(app.config['UPLOAD_FOLDER'], 'images', secure_filename(current_name)))
+
         elif f.filename[-3:] == "dm4":
-            f.save("static/username/images/" + f.filename)
-            data = dm.dmReader("static/username/images/" + f.filename)['data']
+            f.save(cur_name)
+            data = dm.dmReader(cur_name)['data']
             new_array = (data - np.min(data)) / (np.max(data) - np.min(data))
             im = Image.fromarray((255 * new_array).astype('uint8'))
             current_name = f.filename[:-3] + "jpg"
-            im.save("static/username/images/" + current_name)
+            im.save(os.path.join(app.config['UPLOAD_FOLDER'], 'images', secure_filename(current_name)))
         else:
             current_name = f.filename
-            f.save("static/username/images/" + current_name)
+            print(f)
+            print("save address")
+            f.save(os.path.join(app.config['UPLOAD_FOLDER'], 'images', secure_filename(current_name)))
+            #f.save("C:\Users\\rodr822\Desktop\Application\pychip_deploy\pychip\static\username\images\\"+current_name)
 
         session['file'] = current_name
         print(current_name)
         # load image and gets the image dimensions
-        im_gray = cv2.imread("static/username/images/" + current_name, cv2.IMREAD_GRAYSCALE)
-        dim = {'height': im_gray.shape[0], 'width': im_gray.shape[1], 'image': "static/username/images/" + current_name}
-        print(dim)
+        im_gray = cv2.imread(os.path.join(app.config['UPLOAD_FOLDER'], 'images', secure_filename(session['file'])), cv2.IMREAD_GRAYSCALE)
+        dim = {'height': im_gray.shape[0], 'width': im_gray.shape[1], 'image': secure_filename(session['file'])}
 
         session['dim'] = dim
+
         return render_template('index.html', dim=dim)
 
     # default image (if nothing is uploaded)
@@ -108,9 +135,10 @@ def save_file():
 
         # dim = {'height': height, 'width' : width, 'image': "protected/username/" + current_file}
 
-        path_to_im = "static/username/images/" + current_file
-        print(path_to_im)
-        query_path = "static/username/query/all_chips/"
+        path_to_im = os.path.join(app.config['UPLOAD_FOLDER'], 'images', secure_filename(session['file']))
+        print("this is the path!")
+
+        query_path = os.path.join(app.config['UPLOAD_FOLDER'], 'query', 'all_chips')
 
         try:
             shutil.rmtree(query_path)
@@ -138,9 +166,11 @@ def save_file():
         print("Pixels ignored in y: last " + str(pixels_ignored_in_y))
 
         #crop out unused part
-        image = Image.open("static/username/images/" + current_file)
+        image = Image.open(os.path.join(app.config['UPLOAD_FOLDER'], 'images', secure_filename(session['file'])))
         im1 = image.crop((0, 0, width - pixels_ignored_in_x, height - pixels_ignored_in_y))
-        im1.save("static/username/images/" + current_file)
+        im1.save(os.path.join(app.config['UPLOAD_FOLDER'], 'images', secure_filename(session['file'])))
+        img = cv2.imread(path_to_im)
+
 
         x_coords = list(range(0, width, size_of_img))
         y_coords = list(range(0, height, size_of_img))
@@ -160,8 +190,7 @@ def save_file():
                 name = "cropX_" + str(i) + "_Y_" + str(j) + ".jpg"
 
                 img_names.append(name)
-                plt.imsave(query_path+name, new_img, vmin=0, vmax=255)
-
+                plt.imsave(os.path.join(query_path, name), new_img, vmin=0, vmax=255)
         dim = session.get('dim')
         dim["num_crops_x"] = num_crops_x
         dim["num_crops_y"] = num_crops_y
