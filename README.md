@@ -92,11 +92,11 @@ Relaunch
  How to Cite pyCHIP
  ======================
 
- If you find this application useful and want to publish your results, please cite our preprints:
+ If you find this application useful and want to publish your results, please cite the following:
 
- • Sarah Akers, Elizabeth Kautz, Andrea Trevino-Gavito et al. Rapid and Flexible Semantic Segmentation of Electron Microscopy Data Using Few-Shot Machine Learning, 19 March 2021, PREPRINT (Version 1) available at Research Square [https://doi.org/10.21203/rs.3.rs-346102/v1]
-
- • Christina Doty, Shaun Gallagher, Wenqi Cui, Wenya Chen, Shweta Bhushan, Marjolein Oostrom, Sarah Akers, Steven R. Spurgeon. Design of a Graphical User Interface for Few-Shot Machine Learning Classification of Electron Microscopy Data, 2021 Arxiv Preprint [https://arxiv.org/abs/2107.10387]
+ • Doty, C., Gallagher, S., Cui, W., Chen, W., Bhushan, S., Oostrom, M., Akers, S., & Spurgeon, S. R. (2021). Design of a Graphical User Interface for Few-Shot Machine Learning Classification of Electron Microscopy Data. Arxiv Preprint [https://arxiv.org/abs/2107.10387]
+ 
+ • Akers, S., Kautz, E., Trevino-Gavito, A., Olszta, M., Matthews, B. E., Wang, L., Du, Y., & Spurgeon, S. R. (2021). Rapid and flexible segmentation of electron microscopy data using few-shot machine learning. Npj Computational Materials, 7(1), 187. [https://doi.org/10.1038/s41524-021-00652-z]
 
  Contact Information
  ======================
