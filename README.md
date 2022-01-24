@@ -94,9 +94,9 @@ Relaunch
 
  If you find this application useful and want to publish your results, please cite the following:
 
- • Doty, C., Gallagher, S., Cui, W., Chen, W., Bhushan, S., Oostrom, M., Akers, S., & Spurgeon, S. R. (2021). Design of a Graphical User Interface for Few-Shot Machine Learning Classification of Electron Microscopy Data. Arxiv Preprint [https://arxiv.org/abs/2107.10387]
+ • Doty, C., Gallagher, S., Cui, W., Chen, W., Bhushan, S., Oostrom, M., Akers, S., & Spurgeon, S. R. (2022). Design of a Graphical User Interface for Few-Shot Machine Learning Classification of Electron Microscopy Data. Computational Materials Science, 203, 111121. [https://doi.org/10.1016/j.commatsci.2021.111121]
  
- • Akers, S., Kautz, E., Trevino-Gavito, A., Olszta, M., Matthews, B. E., Wang, L., Du, Y., & Spurgeon, S. R. (2021). Rapid and flexible segmentation of electron microscopy data using few-shot machine learning. Npj Computational Materials, 7(1), 187. [https://doi.org/10.1038/s41524-021-00652-z]
+ • Akers, S., Kautz, E., Trevino-Gavito, A., Olszta, M., Matthews, B. E., Wang, L., Du, Y., & Spurgeon, S. R. (2021). Rapid and flexible segmentation of electron microscopy data using few-shot machine learning. npj Computational Materials, 7(1), 187. [https://doi.org/10.1038/s41524-021-00652-z]
 
  Contact Information
  ======================
