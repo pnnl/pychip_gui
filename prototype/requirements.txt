@@ -22,7 +22,7 @@ networkx==2.5.1
 numpy==1.19.4
 opencv-python==4.5.1.48
 pandas==1.2.0
-Pillow==8.0.1
+Pillow==13.0.0
 pyparsing==2.4.7
 python-dateutil==2.8.1
 pytz==2020.5
